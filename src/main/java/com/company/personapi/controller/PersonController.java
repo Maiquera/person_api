@@ -2,6 +2,7 @@ package com.company.personapi.controller;
 
 import com.company.personapi.dto.MessageResponseDTO;
 import com.company.personapi.dto.request.PersonDTO;
+import com.company.personapi.exception.PersonNotFoundException;
 import com.company.personapi.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,10 @@ public class PersonController {
     @GetMapping
     public List<PersonDTO> listAll(){
         return personService.listAll();
+    }
+
+    @GetMapping("/{id}")
+    public PersonDTO findById(Long id) throws PersonNotFoundException {
+        return personService.findById(id);
     }
 }
